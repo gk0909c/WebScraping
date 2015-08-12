@@ -1,0 +1,21 @@
+<%=   render partial: "search_form" %>
+
+<%= content_tag :h3, "「#{@keyword}」の検索　＝＞" + @results.length.to_s + "件の結果" %>
+
+<table class="list" border="1" style="font-size: 14px">
+  <tr>
+    <th>#</th>
+    <th>ドメイン</th>
+    <th>URL</th>
+    <th>HTML</th>
+  </tr>
+
+  <% @results.each_with_index do |result, i| %>
+    <%= content_tag(:tr, :class => cycle("even", "odd")) do %>
+      <%= content_tag(:td, i + 1) %>
+      <%= content_tag(:td, result[:domain]) %>
+      <%= content_tag(:td, result[:link]) %>
+      <%= content_tag(:td, result[:html].html_safe) %>
+    <% end %>
+  <% end %>
+</table>
